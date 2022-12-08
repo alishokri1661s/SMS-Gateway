@@ -1,8 +1,6 @@
 package server
 
 import (
-	"fmt"
-
 	"github.com/alishokri1661s/SMS-Gateway/internals/core/ports"
 	"github.com/alishokri1661s/SMS-Gateway/internals/routers"
 	"github.com/gin-gonic/gin"
@@ -23,7 +21,7 @@ func NewServer(handler ports.IHandler) *Server {
 // Initialize implements ports.IServer
 func (s *Server) Initialize() {
 	gin.SetMode(gin.ReleaseMode)
-	router := gin.New()
+	router := gin.Default()
 	routers.GetRoutes(router, s.handler)
-	fmt.Println("here")
+	router.Run(":8000")
 }
