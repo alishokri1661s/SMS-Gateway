@@ -18,17 +18,10 @@ var _ ports.IRepository = (*Repository)(nil)
 
 func CreateDabaseConnection() *Repository {
 	dbSetting := conf.DatabaseSetting
-	//dbname=%s
-	dsn := fmt.Sprintf("host=%s user=%s password=%s port=%s sslmode=disable",
-		dbSetting.Host, dbSetting.User, dbSetting.Password, dbSetting.Port)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+		dbSetting.Host, dbSetting.User, dbSetting.Password, dbSetting.Name, dbSetting.Port)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-
-	// err2 := db.Exec("create database " + dbSetting.Name)
-	// if err2 != nil {
-	// 	//handle the error
-	// 	log.Fatal(err2)
-	// }
 
 	if err != nil {
 		panic(err)
