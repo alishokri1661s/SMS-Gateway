@@ -6,7 +6,7 @@ import (
 	"github.com/go-ini/ini"
 )
 
-type Database struct {
+type database struct {
 	User     string
 	Password string
 	Host     string
@@ -14,7 +14,13 @@ type Database struct {
 	Port     string
 }
 
-var DatabaseSetting = &Database{}
+type server struct {
+	Host   string
+	Port string
+}
+
+var DatabaseSetting = &database{}
+var ServerSetting = &server{}
 
 func Setup() {
 	cfg, err := ini.Load("conf/app.ini")
@@ -26,6 +32,12 @@ func Setup() {
 	err = cfg.Section("database").MapTo(DatabaseSetting)
 	if err != nil {
 		log.Fatalf("setting.Setup, fail to parse 'database' section: %v", err)
+		return
+	}
+
+	err = cfg.Section("server").MapTo(ServerSetting)
+	if err != nil {
+		log.Fatalf("setting.Setup, fail to parse 'server' section: %v", err)
 		return
 	}
 }

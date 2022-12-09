@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/alishokri1661s/SMS-Gateway/internals/core/domain"
 	"github.com/alishokri1661s/SMS-Gateway/internals/core/ports"
@@ -24,16 +25,29 @@ func NewHandlers(service ports.IService) *Handler {
 func (h *Handler) SendSMS(ctx *gin.Context) {
 	var sms domain.SMS
 	if err := ctx.BindJSON(&sms); err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		ctx.IndentedJSON(http.StatusBadRequest, err)
+		return
 	}
 
-	err := h.service.SendSMS(sms)
-	if err != nil {
-		log.Fatal(err)
+	var err error
+	sms, err = h.service.SendSMS(sms)
+
+	if err == nil {
+		ctx.IndentedJSON(http.StatusCreated, sms)
+	} else {
+		ctx.IndentedJSON(http.StatusBadRequest, err)
 	}
 }
 
 // LogSMS implements ports.IHandler
 func (h *Handler) LogSMS(ctx *gin.Context) {
-	panic("unimplemented")
+	allSMS, err := h.service.LogSMS()
+
+	if err == nil {
+		ctx.IndentedJSON(http.StatusOK, allSMS)
+	} else {
+		ctx.IndentedJSON(http.StatusBadRequest, err)
+	}
+
 }

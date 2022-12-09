@@ -9,10 +9,11 @@ func GetRoutes(router *gin.Engine, handler ports.IHandler) {
 	sms := router.Group("/sms")
 	//send message
 	sms.POST("/send", handlerFunc(handler.SendSMS))
-
 	//log message
+	sms.GET("/log", handlerFunc(handler.LogSMS))
 }
 
+// This function gets "func(*gin.Context)" and returns "gin.HandlerFunc"
 func handlerFunc(v interface{}) gin.HandlerFunc {
 	switch v := v.(type) {
 	case func(*gin.Context):

@@ -6,17 +6,17 @@ import (
 )
 
 type IRepository interface {
-	SendSMS(sms domain.SMS) error
-	LogSMS() error
+	SendSMS(sms domain.SMS) (domain.SMS, error)
+	LogSMS() ([]domain.SMS, error)
 }
 
 type IService interface {
-	SendSMS(sms domain.SMS) error
-	LogSMS() error
+	SendSMS(sms domain.SMS) (domain.SMS, error)
+	LogSMS() ([]domain.SMS, error)
 }
 
 type IHandler interface {
-	SendSMS(ctx *gin.Context) 
+	SendSMS(ctx *gin.Context)
 	LogSMS(ctx *gin.Context)
 }
 

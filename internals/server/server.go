@@ -1,6 +1,10 @@
 package server
 
 import (
+	"fmt"
+	"log"
+
+	"github.com/alishokri1661s/SMS-Gateway/conf"
 	"github.com/alishokri1661s/SMS-Gateway/internals/core/ports"
 	"github.com/alishokri1661s/SMS-Gateway/internals/routers"
 	"github.com/gin-gonic/gin"
@@ -23,5 +27,7 @@ func (s *Server) Initialize() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	routers.GetRoutes(router, s.handler)
-	router.Run(":8000")
+	serverAddress := fmt.Sprintf("%s:%s", conf.ServerSetting.Host, conf.ServerSetting.Port)
+	log.Printf("Server started on %s\n", serverAddress)
+	router.Run(serverAddress)
 }

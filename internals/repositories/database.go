@@ -27,7 +27,7 @@ func CreateDabaseConnection() *Repository {
 		panic(err)
 	}
 
-	db.AutoMigrate()
+	db.AutoMigrate(&domain.SMS{})
 
 	return &Repository{
 		database: db,
@@ -36,15 +36,14 @@ func CreateDabaseConnection() *Repository {
 }
 
 // SendSMS implements ports.IRepository
-func (r *Repository) SendSMS(sms domain.SMS) error {
-	if err := r.database.Create(&sms).Error; err != nil {
-		return err
-	}
-
-	return nil
+func (r *Repository) SendSMS(sms domain.SMS) (domain.SMS, error) {
+	err := r.database.Create(&sms).Error
+	return sms, err
 }
 
 // LogSMS implements ports.IRepository
-func (*Repository) LogSMS() error {
-	panic("unimplemented")
+func (r *Repository) LogSMS() ([]domain.SMS, error) {
+	allsms := []domain.SMS{}
+	err := r.database.Find(&allsms).Error
+	return allsms, err
 }

@@ -1,6 +1,8 @@
 package services
 
 import (
+	"log"
+
 	"github.com/alishokri1661s/SMS-Gateway/internals/core/domain"
 	"github.com/alishokri1661s/SMS-Gateway/internals/core/ports"
 )
@@ -19,23 +21,24 @@ func NewService(repository ports.IRepository) *Service {
 }
 
 // SendSMS implements ports.IService
-func (s *Service) SendSMS(sms domain.SMS) error {
-	err := s.repository.SendSMS(sms)
+func (s *Service) SendSMS(sms domain.SMS) (domain.SMS, error) {
+	var err error
+	sms, err = s.repository.SendSMS(sms)
 	if err != nil {
-		return err
+		log.Println(err)
 	}
 
 	//send to borker
 
-	return nil
+	return sms, err
 
 }
 
 // LogSMS implements ports.IService
-func (s *Service) LogSMS() error {
-	err := s.repository.LogSMS()
+func (s *Service) LogSMS() ([]domain.SMS, error) {
+	allsms, err := s.repository.LogSMS()
 	if err != nil {
-		return err
+		log.Println(err)
 	}
-	return nil
+	return allsms, err
 }

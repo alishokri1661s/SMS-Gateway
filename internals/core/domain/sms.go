@@ -13,9 +13,9 @@ const (
 
 type SMS struct {
 	gorm.Model
-	Id       int           `json:"id" gorm:"primary_key"`
-	Sender   string        `json:"sender"`
-	Receiver string        `json:"receiver"`
-	Status   MessageStatus `json:"status"`
-	Text     string        `json:"text"`
+	ServiceType string        `json:"service_type"`
+	Sender      string        `json:"sender"`
+	Receiver    string        `json:"receiver"`
+	Status      MessageStatus `json:"status"`
+	Text        string        `json:"text"`
 }
