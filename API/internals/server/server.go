@@ -22,6 +22,8 @@ func NewServer(handler ports.IHandler) *Server {
 	}
 }
 
+var Router *gin.Engine
+
 // Initialize implements ports.IServer
 func (s *Server) Initialize() {
 	gin.SetMode(gin.ReleaseMode)
@@ -29,5 +31,6 @@ func (s *Server) Initialize() {
 	routers.GetRoutes(router, s.handler)
 	serverAddress := fmt.Sprintf("%s:%s", conf.ServerSetting.Host, conf.ServerSetting.Port)
 	log.Printf("Server started on %s\n", serverAddress)
+	Router = router
 	router.Run(serverAddress)
 }
