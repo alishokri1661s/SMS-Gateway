@@ -30,6 +30,7 @@ var DatabaseSetting = &database{}
 var ServerSetting = &server{}
 var MessageBrokerSetting = &messageBroker{}
 var GhasedakAPIKey string
+var KavenegarAPIKey string
 
 func Setup() {
 	cfg, err := ini.Load("Utils/conf/app.ini")
@@ -62,4 +63,11 @@ func Setup() {
 		return
 	}
 	GhasedakAPIKey = key.Value()
+
+	key, err = cfg.Section("kavenegar").GetKey("api_key")
+	if err != nil {
+		log.Fatalf("setting.Setup, fail to parse 'kavenegar' section: %v", err)
+		return
+	}
+	KavenegarAPIKey = key.Value()
 }

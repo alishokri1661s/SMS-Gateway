@@ -12,13 +12,10 @@ type Service struct {
 	repository ports.IRepository
 }
 
-var senderServicesURL map[string]string
-
 // This line is for get feedback in case we are not implementing the interface correctly
 var _ ports.IService = (*Service)(nil)
 
 func NewService(repository ports.IRepository) *Service {
-	senderServicesURL = make(map[string]string)
 	return &Service{
 		repository: repository,
 	}
