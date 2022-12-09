@@ -1,0 +1,12 @@
+github.com/ghasedakapi/ghasedak-go v0.0.0-20220219065027-afb07b1dcf45 h1:SiAyrdcsklkMsDzSwqqM3HAJFV6avKoP9riBganzo4s=
+github.com/ghasedakapi/ghasedak-go v0.0.0-20220219065027-afb07b1dcf45/go.mod h1:Hj7IcwtwV9z57JKPMKN8brbF2acsIB0wfH+5M6VRu1g=
+github.com/go-ini/ini v1.67.0 h1:z6ZrTEZqSWOTyH2FlglNbNgARyHG8oLW9gMELqKr06A=
+github.com/go-ini/ini v1.67.0/go.mod h1:ByCAeIL28uOIIG0E3PJtZPDL8WnHpFKFOtgjp+3Ies8=
+github.com/kavenegar/kavenegar-go v0.0.0-20221124112814-40341057b5ca h1:aEyiDaExheG7fNpEYcILCVGgM7jlLzTVgxEQAGaepeM=
+github.com/kavenegar/kavenegar-go v0.0.0-20221124112814-40341057b5ca/go.mod h1:CRhvvr4KNAyrg+ewrutOf+/QoHs7lztSoLjp+GqhYlA=
+github.com/tidwall/gjson v1.14.4 h1:uo0p8EbA09J7RQaflQ1aBRffTR7xedD2bcIVSYxLnkM=
+github.com/tidwall/gjson v1.14.4/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
+github.com/tidwall/match v1.1.1 h1:+Ho715JplO36QYgwN9PGYNhgZvoUSc9X2c80KVTi+GA=
+github.com/tidwall/match v1.1.1/go.mod h1:eRSPERbgtNPcGhD8UCthc6PmLEQXEWd3PRB5JTxsfmM=
+github.com/tidwall/pretty v1.2.0 h1:RWIZEg2iJ8/g6fDDYzMpobmaoGh5OLl4AXtGUGPcqCs=
+github.com/tidwall/pretty v1.2.0/go.mod h1:ITEVvHYasfjBbM0u2Pg8T2nJnzm8xPwvNhhsoaGGjNU=
